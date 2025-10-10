@@ -118,14 +118,6 @@ function MintPageContent() {
     };
 
     const handleDemoMint = async () => {
-        if (!isConnected || !address) {
-            setDemoMessage({
-                type: 'error',
-                text: 'Please connect your wallet first!',
-            });
-            return;
-        }
-
         setDemoMinting(true);
         setDemoMessage(null);
 
@@ -135,10 +127,7 @@ function MintPageContent() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ 
-                    quantity,
-                    recipient: address, // Send the connected wallet address
-                }),
+                body: JSON.stringify({ quantity }),
             });
 
             const data = await response.json();
@@ -149,15 +138,17 @@ function MintPageContent() {
 
             setDemoMessage({
                 type: 'success',
-                text: `Successfully minted ${quantity} ticket${quantity > 1 ? 's' : ''}! Redirecting to My Tickets...`,
+                text: `✅ Successfully minted ${quantity} demo ticket${quantity > 1 ? 's' : ''}! Demo wallet: ${data.wallet.slice(0, 6)}...${data.wallet.slice(-4)}. Check Analytics or Scanner to verify the tickets!`,
             });
 
-            // Redirect to my-tickets page after 2 seconds
-            setTimeout(() => {
-                router.push('/my-tickets');
-            }, 2000);
+            // Don't redirect - show success message with demo wallet info
+            // User can check analytics or scanner to verify
         } catch (err: any) {
             console.error('Demo minting failed:', err);
+            setDemoMessage({
+                type: 'error',
+                text: err.message || 'Failed to mint demo tickets',
+            });
             setDemoMessage({
                 type: 'error',
                 text: err.message || 'Failed to mint tickets',
@@ -252,12 +243,15 @@ function MintPageContent() {
                         <div className="flex items-start space-x-3">
                             <div className="text-2xl">🎯</div>
                             <div className="flex-1">
-                                <h3 className="font-bold text-green-800 mb-1">Demo Wallet</h3>
+                                <h3 className="font-bold text-green-800 mb-1">Demo Mode</h3>
                                 <p className="text-sm text-green-700 mb-2">
-                                    Use the "Demo" button to mint with the pre-funded demo wallet:
+                                    Try minting without connecting a wallet! Demo tickets go to:
                                 </p>
-                                <p className="text-xs font-mono bg-white/70 p-2 rounded border border-green-300 break-all">
+                                <p className="text-xs font-mono bg-white/70 p-2 rounded border border-green-300 break-all mb-2">
                                     0xc952b1071e063a3Bb601F670f6f1f04e2A4631Ae
+                                </p>
+                                <p className="text-xs text-green-600">
+                                    📊 View demo tickets in <a href="/analytics" className="underline font-semibold">Analytics</a> or use the <a href="/scanner" className="underline font-semibold">Scanner</a>
                                 </p>
                             </div>
                         </div>

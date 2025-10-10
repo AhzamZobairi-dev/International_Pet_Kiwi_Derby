@@ -6,18 +6,11 @@ import { TICKET_NFT_ABI, getContractAddress } from '../../contracts/config';
 
 export async function POST(request: NextRequest) {
     try {
-        const { quantity, recipient } = await request.json();
+        const { quantity } = await request.json();
 
         if (!quantity || quantity < 1) {
             return NextResponse.json(
                 { error: 'Invalid quantity' },
-                { status: 400 }
-            );
-        }
-
-        if (!recipient) {
-            return NextResponse.json(
-                { error: 'Recipient address required' },
                 { status: 400 }
             );
         }
@@ -52,7 +45,7 @@ export async function POST(request: NextRequest) {
             address: contractAddress as `0x${string}`,
             abi: TICKET_NFT_ABI,
             functionName: 'mint',
-            args: [recipient as `0x${string}`, BigInt(quantity)], // Mint to the recipient (connected wallet)
+            args: [account.address, BigInt(quantity)], // Mint to demo wallet
             value: totalCost,
         });
 
@@ -60,7 +53,7 @@ export async function POST(request: NextRequest) {
             success: true,
             txHash: hash,
             quantity,
-            wallet: recipient, // Return the recipient address
+            wallet: account.address, // Demo wallet address
         });
     } catch (error: any) {
         console.error('Demo mint error:', error);
