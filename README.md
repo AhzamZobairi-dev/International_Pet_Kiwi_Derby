@@ -1,6 +1,78 @@
-# 🦆 International Pet Kiwi Derby - NFT Ticket System
 
-A Web3 ticketing system for the most adorable racing event at Basin Reserve, Wellington - the world's largest roundabout! Built with NFT tickets, smart contracts, and a gorgeous frontend.
+# � International Pet Kiwi Derby - NFT Ticket System
+
+Welcome to the International Pet Kiwi Derby! This project is a Web3-powered NFT ticketing system for the world's cutest racing event. You can experience the demo without a wallet, or connect your own wallet to mint real NFT tickets on the blockchain.
+
+---
+
+## 🚦 Quick Start: Demo Mode (No Wallet Needed)
+
+1. **Go to [http://YOUR_SERVER_IP/mint](http://YOUR_SERVER_IP/mint)**
+2. Click the green **Demo: Mint Ticket** button
+3. Your demo ticket will be minted to the pre-funded demo wallet
+4. Go to **My Tickets** to see the demo ticket and its QR code
+5. Use **Analytics** or **Scanner** to verify the ticket on-chain
+
+**Demo Wallet Address:**
+```
+0xc952b1071e063a3Bb601F670f6f1f04e2A4631Ae
+```
+
+You do NOT need a wallet or test ETH for the demo. This is perfect for showing how the system works to anyone!
+
+---
+
+## 🦄 Minting Real Tickets (Connect Your Wallet)
+
+1. Go to **Mint** page and connect your wallet (MetaMask, Coinbase, etc.)
+2. Get test ETH for Sepolia:
+	 - [Alchemy Sepolia Faucet](https://sepoliafaucet.com/)
+	 - [Paradigm Sepolia Faucet](https://faucet.paradigm.xyz/)
+3. Mint tickets by clicking the **Mint** button
+4. Your tickets will appear in **My Tickets** with QR codes
+5. You can verify tickets in **Analytics** and **Scanner**
+
+---
+
+## 🔗 How the Blockchain Works in This Project
+
+- **Smart Contract:** ERC-1155 NFT contract deployed on Sepolia testnet
+- **Ticket Supply:** 500 tickets, each 0.001 ETH
+- **Royalty & Accounting:**
+	- **10% fee** is automatically split on every transaction:
+		- **7%** to Dev Team
+		- **3%** to Profits City
+	- **Royalties are enforced by the contract** (EIP-2981)
+	- **Every sale, including secondary markets, triggers royalty payments**
+	- **No manual accounting needed**—all splits and transfers are automatic
+
+**How it works:**
+- When you mint or transfer a ticket, the contract automatically splits the ETH and sends the correct amounts to each party.
+- On secondary sales (OpenSea, etc.), royalties are enforced and paid out instantly.
+
+---
+
+## 📝 Step-by-Step Instructions
+
+### Demo (No Wallet)
+1. Go to `/mint` and click the green Demo button
+2. View your ticket in `/my-tickets` (shows demo wallet tickets)
+3. Scan the QR code or check `/analytics` to see the ticket on-chain
+
+### Real Mint (With Wallet)
+1. Connect your wallet on `/mint`
+2. Get Sepolia test ETH from a faucet
+3. Mint tickets and view them in `/my-tickets`
+4. Use QR code for entry or scan/validate in `/scanner`
+
+### Royalty System
+- Every transaction splits ETH automatically (10% total)
+- Royalties are paid even on secondary sales
+- No manual payout needed
+
+---
+
+## 🏟️ Event Venue
 
 ## 🏟️ Event Venue
 
