@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useAccount, useWriteContract, useReadContract, useChainId } from 'wagmi';
 import { parseEther, formatEther } from 'viem';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -11,7 +11,7 @@ import Navbar from '../components/Navbar';
 // Force dynamic rendering (don't try to statically generate this page)
 export const dynamic = 'force-dynamic';
 
-export default function MintPage() {
+function MintPageContent() {
     const [quantity, setQuantity] = useState(1);
     const [ethToUsd, setEthToUsd] = useState<number | null>(null);
     const [demoMinting, setDemoMinting] = useState(false);
@@ -374,5 +374,13 @@ export default function MintPage() {
                 </footer>
             </div>
         </div>
+    );
+}
+
+export default function MintPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+            <MintPageContent />
+        </Suspense>
     );
 }
