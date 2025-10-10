@@ -7,7 +7,7 @@ Welcome to the International Pet Kiwi Derby! This project is a Web3-powered NFT 
 
 ## 🚦 Quick Start: Demo Mode (No Wallet Needed)
 
-1. **Go to [http://YOUR_SERVER_IP/mint](http://YOUR_SERVER_IP/mint)**
+1. **Go to [http://160.238.36.194/mint](http://160.238.36.194/mint)**
 2. Click the green **Demo: Mint Ticket** button
 3. Your demo ticket will be minted to the pre-funded demo wallet
 4. Go to **My Tickets** to see the demo ticket and its QR code
@@ -19,6 +19,11 @@ Welcome to the International Pet Kiwi Derby! This project is a Web3-powered NFT 
 ```
 
 You do NOT need a wallet or test ETH for the demo. This is perfect for showing how the system works to anyone!
+
+**Access the full project at:**
+```
+http://160.238.36.194
+```
 
 ---
 
