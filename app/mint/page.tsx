@@ -118,6 +118,14 @@ function MintPageContent() {
     };
 
     const handleDemoMint = async () => {
+        if (!isConnected || !address) {
+            setDemoMessage({
+                type: 'error',
+                text: 'Please connect your wallet first!',
+            });
+            return;
+        }
+
         setDemoMinting(true);
         setDemoMessage(null);
 
@@ -127,7 +135,10 @@ function MintPageContent() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ quantity }),
+                body: JSON.stringify({ 
+                    quantity,
+                    recipient: address, // Send the connected wallet address
+                }),
             });
 
             const data = await response.json();
